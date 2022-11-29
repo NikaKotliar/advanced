@@ -1,5 +1,6 @@
 /* eslint-disable */
-let result = []
+
+import  {getAttackOptions}  from '../main'
 
 const character = {
     name: 'Лучник',
@@ -24,15 +25,17 @@ const character = {
 }
 
 
-function getAttackOptions({ special } = obj) {
-    let resultArray = []
-    for (let { id, name, icon = "Описание недоступно", description = "Описание недоступно" } of special) {
-
-        resultArray.push(id, name, icon, description)
-    }
-    return resultArray
-}
-
-console.log(getAttackOptions(character))
-
-export { character, getAttackOptions }
+test('check getAttackOptions', () => {
+    let expected = [
+        8,
+        'Двойной выстрел',
+        'http://...',
+        'Двойной выстрел наносит двойной урон',
+        9,
+        'Нокаутирующий удар',
+        'http://...',
+        'Описание недоступно'
+      ]
+    let  received = getAttackOptions(character)
+    expect(received).toEqual(expected);
+});
